@@ -1,13 +1,5 @@
 ### subscription factory
-Deploy connectivity subscription containing
-
-- vwan
-- azure firewall
-- azure firewall manager
-- express route gw
-- vpn gw
-
-Module focuses on MCA account for testing purposes
+Deploy baseline subscirptions in accordance with CAF guidance. The billing construct is for microsoft customer account (mca) for testing purposes.
 
 ### Requirements
 a `backend.conf` file containing
