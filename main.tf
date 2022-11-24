@@ -29,6 +29,7 @@ module "alz-connectivity-subscription-001" {
 
   virtual_network_enabled = false
   role_assignment_enabled = false
+  disable_telemetry = true
 
   providers = {
     azurerm = azurerm
@@ -52,6 +53,7 @@ module "alz-identity-subscription-001" {
 
   virtual_network_enabled = false
   role_assignment_enabled = false
+  disable_telemetry = true
 
   providers = {
     azurerm = azurerm
@@ -75,6 +77,7 @@ module "alz-management-subscription-001" {
 
   virtual_network_enabled = false
   role_assignment_enabled = false
+  disable_telemetry = true
 
   providers = {
     azurerm = azurerm
@@ -98,6 +101,7 @@ module "alz-sandbox-subscription-001" {
 
   virtual_network_enabled = false
   role_assignment_enabled = false
+  disable_telemetry = true
 
   providers = {
     azurerm = azurerm
@@ -121,6 +125,7 @@ module "alz-corp-subscription-001" {
 
   virtual_network_enabled = false
   role_assignment_enabled = false
+  disable_telemetry = true
 
   providers = {
     azurerm = azurerm
@@ -145,7 +150,8 @@ module "alz-corp-subscription-002" {
 
   virtual_network_enabled = false
   role_assignment_enabled = false
-
+  disable_telemetry = true
+  
   providers = {
     azurerm = azurerm
   }
