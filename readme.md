@@ -1,4 +1,4 @@
-### subscription factory
+### Subscription factory
 Deploy baseline subscirptions in accordance with CAF guidance. The billing construct is for microsoft customer account (mca) for testing purposes.
 
 ### Requirements
