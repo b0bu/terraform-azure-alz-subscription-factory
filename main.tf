@@ -4,6 +4,11 @@ locals {
   invoice_section_name = var.invoice_section_name // pulled out of browser url from invoices section view
 }
 
+# data "azurerm_billing_enrollment_account_scope" "ea" {
+#   billing_account_name    = "existing"
+#   enrollment_account_name = "existing"
+# }
+
 data "azurerm_billing_mca_account_scope" "mca" {
   billing_account_name = local.billing_account_name
   billing_profile_name = local.billing_profile_name
@@ -29,7 +34,13 @@ module "alz-connectivity-subscription-001" {
 
   virtual_network_enabled = false
   role_assignment_enabled = false
-  disable_telemetry = true
+  disable_telemetry       = true
+
+  subscription_tags = {
+    terraform_managed = "true"
+    source            = "Azure/lz-vending/azurerm"
+    source_version    = "2.1.0"
+  }
 
   providers = {
     azurerm = azurerm
@@ -53,10 +64,17 @@ module "alz-identity-subscription-001" {
 
   virtual_network_enabled = false
   role_assignment_enabled = false
-  disable_telemetry = true
+  disable_telemetry       = true
+
+  subscription_tags = {
+    terraform_managed = "true"
+    source            = "Azure/lz-vending/azurerm"
+    source_version    = "2.1.0"
+  }
 
   providers = {
     azurerm = azurerm
+    azapi   = azapi
   }
 }
 
@@ -77,10 +95,17 @@ module "alz-management-subscription-001" {
 
   virtual_network_enabled = false
   role_assignment_enabled = false
-  disable_telemetry = true
+  disable_telemetry       = true
+
+  subscription_tags = {
+    terraform_managed = "true"
+    source            = "Azure/lz-vending/azurerm"
+    source_version    = "2.1.0"
+  }
 
   providers = {
     azurerm = azurerm
+    azapi   = azapi
   }
 }
 
@@ -101,10 +126,17 @@ module "alz-sandbox-subscription-001" {
 
   virtual_network_enabled = false
   role_assignment_enabled = false
-  disable_telemetry = true
+  disable_telemetry       = true
+
+  subscription_tags = {
+    terraform_managed = "true"
+    source            = "Azure/lz-vending/azurerm"
+    source_version    = "2.1.0"
+  }
 
   providers = {
     azurerm = azurerm
+    azapi   = azapi
   }
 }
 
@@ -117,7 +149,7 @@ module "alz-corp-subscription-001" {
   subscription_billing_scope = data.azurerm_billing_mca_account_scope.mca.id
   subscription_display_name  = "alz-corp-subscription-001"
   subscription_alias_name    = "corp-001"
-  subscription_workload      = "Production"
+  subscription_workload      = "DevTest"
 
   // assuming mg hierarchy exists individual subscirptions can be moved to the appropriate mg
   #   subscription_management_group_association_enabled = true
@@ -125,10 +157,17 @@ module "alz-corp-subscription-001" {
 
   virtual_network_enabled = false
   role_assignment_enabled = false
-  disable_telemetry = true
+  disable_telemetry       = true
+
+  subscription_tags = {
+    terraform_managed = "true"
+    source            = "Azure/lz-vending/azurerm"
+    source_version    = "2.1.0"
+  }
 
   providers = {
     azurerm = azurerm
+    azapi   = azapi
   }
 }
 
@@ -140,9 +179,9 @@ module "alz-corp-subscription-002" {
 
   subscription_alias_enabled = true
   subscription_billing_scope = data.azurerm_billing_mca_account_scope.mca.id
-  subscription_display_name  = "alz-corp-subscription-001"
+  subscription_display_name  = "alz-corp-subscription-002"
   subscription_alias_name    = "corp-002"
-  subscription_workload      = "Production"
+  subscription_workload      = "DevTest"
 
   // assuming mg hierarchy exists individual subscirptions can be moved to the appropriate mg
   #   subscription_management_group_association_enabled = true
@@ -150,9 +189,16 @@ module "alz-corp-subscription-002" {
 
   virtual_network_enabled = false
   role_assignment_enabled = false
-  disable_telemetry = true
-  
+  disable_telemetry       = true
+
+  subscription_tags = {
+    terraform_managed = "true"
+    source            = "Azure/lz-vending/azurerm"
+    source_version    = "2.1.0"
+  }
+
   providers = {
     azurerm = azurerm
+    azapi   = azapi
   }
 }
