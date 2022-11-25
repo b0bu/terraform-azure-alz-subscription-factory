@@ -1,7 +1,8 @@
 locals {
   billing_account_name = var.billing_account_name
   billing_profile_name = var.billing_profile_name
-  invoice_section_name = var.invoice_section_name // pulled out of browser url from invoices section view
+  invoice_section_name = var.invoice_section_name         // pulled out of browser url from invoices section view
+  //enrollment_account_name = var.enrollment_account_name // only needed for ea accounts
 }
 
 data "azurerm_billing_mca_account_scope" "mca" {
@@ -11,25 +12,26 @@ data "azurerm_billing_mca_account_scope" "mca" {
 }
 
 # data azurerm_billing_enrollment_account_scope "ea" {
-#   billing_account_name = ""
-#   enrollment_account_name = ""
+#   billing_account_name = local.billing_account_name
+#   enrollment_account_name = local.enrollment_account_name
 # }
 
 data "azurerm_client_config" "current" {}
 
-data azure_management_group "connectivity" {
+
+data azurerm_management_group "connectivity" {
   display_name = "Connectivity"
 }
-data azure_management_group "identity" {
+data azurerm_management_group "identity" {
   display_name = "Identity"
 }
-data azure_management_group "management" {
+data azurerm_management_group "management" {
   display_name = "Management"
 }
-data azure_management_group "sandboxes" {
+data azurerm_management_group "sandboxes" {
   display_name = "Sandboxes"
 }
-data azure_management_group "corp" {
+data azurerm_management_group "corp" {
   display_name = "Corp"
 }
 
@@ -63,6 +65,7 @@ module "alz-connectivity-subscription-001" {
     azurerm = azurerm
   }
 }
+
 
 module "alz-identity-subscription-001" {
   source   = "Azure/lz-vending/azurerm"
@@ -125,6 +128,7 @@ module "alz-management-subscription-001" {
     azapi   = azapi
   }
 }
+
 
 module "alz-sandbox-subscription-001" {
   source   = "Azure/lz-vending/azurerm"
