@@ -10,6 +10,11 @@ data "azurerm_billing_mca_account_scope" "mca" {
   invoice_section_name = local.invoice_section_name
 }
 
+# data azurerm_billing_enrollment_account_scope "ea" {
+#   billing_account_name = ""
+#   enrollment_account_name = ""
+# }
+
 data "azurerm_client_config" "current" {}
 
 data azure_management_group "connectivity" {

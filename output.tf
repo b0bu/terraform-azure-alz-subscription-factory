@@ -2,7 +2,7 @@ output "subscription_billing_scope" {
   value = data.azurerm_billing_mca_account_scope.mca.id
 }
 
-# output "subscription_billing_scope_ea" {
+# output "subscription_billing_scope" {
 #   value = data.azurerm_billing_enrollment_account_scope.ea.id
 # }
 

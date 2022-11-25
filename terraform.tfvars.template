@@ -1,12 +1,11 @@
-
 // mca account details
-billing_account_name = ""
-billing_profile_name = ""
-invoice_section_name = ""
+billing_account_name = "a billing account name (id)"
+billing_profile_name = "a billing profile name (id)"
+invoice_section_name = "an invoice section name (id)"
 
 // ea portal details
-#billing_account_name = ""
-#enrollment_account_name = ""
+# billing_account_name = "a billing account name (id)"
+# enrollment_account_name = "a enrollment account name (id)"
 
-subscription_id      = ""
-tenant_id            = ""
+subscription_id      = "some subscription id"
+tenant_id            = "some tenant"

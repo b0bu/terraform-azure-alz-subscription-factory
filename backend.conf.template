@@ -1,0 +1,4 @@
+resource_group_name  = "some resource group"
+storage_account_name = "some stroage account"
+container_name       = "some container name"
+key                  = "some container key"
