@@ -4,11 +4,6 @@ locals {
   invoice_section_name = var.invoice_section_name // pulled out of browser url from invoices section view
 }
 
-# data "azurerm_billing_enrollment_account_scope" "ea" {
-#   billing_account_name    = "existing"
-#   enrollment_account_name = "existing"
-# }
-
 data "azurerm_billing_mca_account_scope" "mca" {
   billing_account_name = local.billing_account_name
   billing_profile_name = local.billing_profile_name
@@ -16,6 +11,23 @@ data "azurerm_billing_mca_account_scope" "mca" {
 }
 
 data "azurerm_client_config" "current" {}
+
+data azure_management_group "connectivity" {
+  display_name = "Connectivity"
+}
+data azure_management_group "identity" {
+  display_name = "Identity"
+}
+data azure_management_group "management" {
+  display_name = "Management"
+}
+data azure_management_group "sandboxes" {
+  display_name = "Sandboxes"
+}
+data azure_management_group "corp" {
+  display_name = "Corp"
+}
+
 
 module "alz-connectivity-subscription-001" {
   source   = "Azure/lz-vending/azurerm"
@@ -30,7 +42,7 @@ module "alz-connectivity-subscription-001" {
 
   // assuming mg hierarchy exists individual subscirptions can be moved to the appropriate mg
   #   subscription_management_group_association_enabled = true
-  #   subscription_management_group_id                  = "Connectivity"
+  #   subscription_management_group_id                  = data.azure_management_group.connectivity.name
 
   virtual_network_enabled = false
   role_assignment_enabled = false
@@ -60,7 +72,7 @@ module "alz-identity-subscription-001" {
 
   // assuming mg hierarchy exists individual subscirptions can be moved to the appropriate mg
   #   subscription_management_group_association_enabled = true
-  #   subscription_management_group_id                  = "Identity"
+  #   subscription_management_group_id                  = data.azure_management_group.connectivity.name
 
   virtual_network_enabled = false
   role_assignment_enabled = false
@@ -90,8 +102,8 @@ module "alz-management-subscription-001" {
   subscription_workload      = "Production"
 
   // assuming mg hierarchy exists individual subscirptions can be moved to the appropriate mg
-  #   subscription_management_group_association_enabled = true
-  #   subscription_management_group_id                  = "Management"
+  #  subscription_management_group_association_enabled = true
+  #  subscription_management_group_id                  = data.azure_management_group.management.name
 
   virtual_network_enabled = false
   role_assignment_enabled = false
@@ -121,8 +133,8 @@ module "alz-sandbox-subscription-001" {
   subscription_workload      = "Production"
 
   // assuming mg hierarchy exists individual subscirptions can be moved to the appropriate mg
-  #   subscription_management_group_association_enabled = true
-  #   subscription_management_group_id                  = "Sandbox"
+  #  subscription_management_group_association_enabled = true
+  #  subscription_management_group_id                  = data.azure_management_group.sandboxes.name
 
   virtual_network_enabled = false
   role_assignment_enabled = false
@@ -153,7 +165,7 @@ module "alz-corp-subscription-001" {
 
   // assuming mg hierarchy exists individual subscirptions can be moved to the appropriate mg
   #   subscription_management_group_association_enabled = true
-  #   subscription_management_group_id                  = "Corp"
+  #   subscription_management_group_id                  = data.azure_management_group.corp.name
 
   virtual_network_enabled = false
   role_assignment_enabled = false
@@ -185,7 +197,7 @@ module "alz-corp-subscription-002" {
 
   // assuming mg hierarchy exists individual subscirptions can be moved to the appropriate mg
   #   subscription_management_group_association_enabled = true
-  #   subscription_management_group_id                  = "Corp"
+  #   subscription_management_group_id                  = data.azure_management_group.corp.name
 
   virtual_network_enabled = false
   role_assignment_enabled = false
