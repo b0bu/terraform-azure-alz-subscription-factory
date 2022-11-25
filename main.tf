@@ -72,7 +72,7 @@ module "alz-identity-subscription-001" {
 
   // assuming mg hierarchy exists individual subscirptions can be moved to the appropriate mg
   #   subscription_management_group_association_enabled = true
-  #   subscription_management_group_id                  = data.azure_management_group.connectivity.name
+  #   subscription_management_group_id                  = data.azure_management_group.identity.name
 
   virtual_network_enabled = false
   role_assignment_enabled = false
